@@ -42,7 +42,7 @@ const (
 	OpFloor      Opcode = iota | (2 << opArgShift) | opDest
 	OpCeil       Opcode = iota | (2 << opArgShift) | opDest
 	OpRound      Opcode = iota | (2 << opArgShift) | opDest
-	OpRInt       Opcode = iota | (2 << opArgShift) | opDest
+	OpTrunc      Opcode = iota | (2 << opArgShift) | opDest
 	OpEq         Opcode = iota | (3 << opArgShift)
 	OpLE         Opcode = iota | (3 << opArgShift)
 	OpLT         Opcode = iota | (3 << opArgShift)
@@ -123,8 +123,8 @@ func (op *Opcode) String() string {
 		return "Ceil"
 	case OpRound:
 		return "Round"
-	case OpRInt:
-		return "RInt"
+	case OpTrunc:
+		return "Trunc"
 	case OpEq:
 		return "Eq"
 	case OpLE:
