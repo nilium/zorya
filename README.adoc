@@ -1,0 +1,22 @@
+Zorya
+=====
+:author: Noel Cower
+
+
+Zorya is an experimental reimplementation of the
+https://github.com/nilium/rusalka-vm[Rusalka virtual machine] in Go. It is
+intended for learning purposes and not much else.
+
+This will likely only implement a subset of Rusalka and refrain from using
+specially-typed value objects as is available in C++ unless I can find a way to
+make those make sense in the context of Go.
+
+
+License
+-------
+Zorya is licensed under the MIT license. See the accompanying LICENSE file for
+the full license, or refer to
+https://raw.githubusercontent.com/nilium/zorya/master/LICENSE for the most
+recent license text.
+
+// vim: set syntax=asciidoc tw=79 sw=8 ts=8 noexpandtab:
