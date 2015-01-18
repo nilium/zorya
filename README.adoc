@@ -9,7 +9,9 @@ intended for learning purposes and not much else.
 
 This will likely only implement a subset of Rusalka and refrain from using
 specially-typed value objects as is available in C++ unless I can find a way to
-make those make sense in the context of Go.
+make those make sense in the context of Go. It will not be compatible with
+existing Rusalka bytecode, as the opcodes aren't guaranteed to have the same
+values anyway.
 
 
 License
