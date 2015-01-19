@@ -50,7 +50,7 @@ func (e *Error) Trace() []string {
 			continue
 		}
 		name := fn.Name()
-		if name != "runtime.signal" {
+		if name != "runtime.sigpanic" {
 			pc -= 1
 		}
 		file, line := fn.FileLine(pc)
