@@ -7,6 +7,8 @@ import (
 	"strings"
 )
 
+const traceSize = 64
+
 const (
 	CodeNoErr int = iota
 	CodeUnderflow
@@ -29,7 +31,7 @@ func (e *Error) Error() string {
 // reify allocates a new Error with the same Code and Msg, but with a new trace
 // slice for the current Callers above the reify call.
 func (e *Error) reify() *Error {
-	var buf [256]uintptr
+	var buf [traceSize]uintptr
 	var bufsl = buf[:]
 	numCallers := runtime.Callers(2, bufsl)
 	var exact = make([]uintptr, numCallers)
@@ -109,7 +111,7 @@ var (
 // format parameters. Its Trace field is automatically populated with Callers
 // above the mkerrorf call.
 func mkerrorf(code int, format string, args ...interface{}) *Error {
-	var buf [256]uintptr
+	var buf [traceSize]uintptr
 	var bufsl = buf[:]
 	numCallers := runtime.Callers(2, bufsl)
 	var exact = make([]uintptr, numCallers)
