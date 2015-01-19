@@ -143,6 +143,18 @@ func (th *Thread) peek() (float64, error) {
 	return th.stack[tip], nil
 }
 
+func (th *Thread) call(fnPtr int64, numArgs int) error {
+	return mkerrorf(0, "Unimplemented")
+}
+
+func (th *Thread) ascendFrame(numPreserved int) error {
+	if numPreserved < 0 {
+		return mkerrorf(CodeBadArg, "numPreserved(%d) < 0", numPreserved)
+	}
+
+	return mkerrorf(0, "Unimplemented")
+}
+
 // exec executes the given opcode with the provided operands, using the flag
 // to determine which arguments are constants.
 func (th *Thread) exec(op Opcode, operands []float64, flag uint) error {
@@ -246,9 +258,11 @@ func (th *Thread) exec(op Opcode, operands []float64, flag uint) error {
 	case OpLoad:
 		*out = th.deref(operands[argSrc], flag, maskSrc)
 	case OpCall:
-		panic("Call not implemented")
+		fnPtr := int64(th.deref(operands[arg1], flag, mask1))
+		numArgs := int(th.deref(operands[arg2], flag, mask2))
+		err = th.call(fnPtr, numArgs)
 	case OpReturn:
-		panic("Return not implemented")
+		err = th.ascendFrame(0)
 	case OpRealloc:
 		panic("Realloc not implemented")
 	case OpFree:
