@@ -122,22 +122,22 @@ func (th *Thread) push(val float64) {
 }
 
 // pop pulls a value off the stack and returns it. If the stack is empty,
-// returns the error ErrStackUnderflow.
+// returns a stack underflow Error.
 func (th *Thread) pop() (float64, error) {
 	tip := int(th.reg[regStackTip]) - 1
 	if tip < int(th.reg[regStackBase]) {
-		return 0, ErrStackUnderflow
+		return 0, errStackUnderflow.reify()
 	}
 	th.reg[regStackTip] -= 1
 	return th.stack[tip], nil
 }
 
 // peek returns the value at the tip of the stack and returns it. If the stack
-// is empty, returns the error ErrStackUnderflow.
+// is empty, returns a stack underflow error.
 func (th *Thread) peek() (float64, error) {
 	tip := int(th.reg[regStackTip]) - 1
 	if tip < int(th.reg[regStackBase]) {
-		return 0, ErrStackUnderflow
+		return 0, errStackUnderflow.reify()
 	}
 	th.reg[regStackTip] -= 1
 	return th.stack[tip], nil
